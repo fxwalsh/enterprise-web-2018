@@ -1,1 +1,1 @@
-"# enterprise-web-2018" 
+# Enterprise Web Dev resources, MSc Enterprise Software Systems, 2017
