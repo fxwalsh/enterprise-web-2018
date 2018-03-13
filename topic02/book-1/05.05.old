@@ -1,0 +1,49 @@
+# Node Package Manager
+
+Node Package Manager(NPM), is the program you use to install third party Node modules. It comes with more recent versions of Node so no need to install it. 
+
+###package.json
+If you're developing a Node program or library for deployment, it's a good practice to include a package.json file. This file is a manifest of the Node project and is located at your project root. It contains various information specific to your project. To create a package.json file, run the following in the *node-lab-1* folder:
+```
+npm init
+```
+You'll now be asked a few questions about your node app. Answer as follows:
+- name: (node-lab-1) 
+- version: (1.0.0) ;
+- description: simple http server;
+- entry point: app1.js;
+- keywords: http node
+- author: *your name*
+- license: (ISC) 
+
+You can leave the others blank.
+
+
+
+
+###Installing Modules
+####Local Modules
+The most common usage of npm is to install packages that have been published to the npm registry. An example is the [express](https://www.npmjs.com/package/express) package. To install request, open a terminal/command prompt in the node-lab-1 folder. Enter the following command:
+```
+npm install express --save
+```
+This will install the package to the ``node_modules`` folder in the project folder. All locally installed modules will be installed here. 
+To use the package, add another "require" to the server code:
+```
+require('express')
+```
+We will be using the Express package later on to help us create web apis.
+
+###Add .gitignore file
+It's probably best to let NPM, and the *package.json* file, manage the project dependencies contained in node_modules folder. Create a new  file using a text editor and enter the following text:
+
+    node_modules 
+
+Save the file as ```.gitignore``` in your *node-lab-1* folder.
+
+###Commit changes
+Do a ```git status```. Notice the modules contained in the ```node_modules``` folder are not listed. Git will ignore them from now on. Now add and commit your changes as usual.
+
+
+---
+
