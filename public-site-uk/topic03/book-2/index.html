@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-light.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      
+
+body
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.ui.segment.pushable
+{
+  margin: 0;
+  padding: 1rem 0;
+  overflow: visible;
+}
+
+code
+{
+  font-family: "Monaco";
+  font-size: 110%;
+}
+
+img
+{
+  padding:1px;
+  border:1px solid black;
+}
+
+h1
+{
+  font-style:italic;
+  font-size:130%;
+  border-bottom:thin solid black;
+}
+
+h2
+{
+  font-size:110%;
+  border-bottom: thin solid black;
+}
+
+h3
+{
+  font-size:100%;
+  border-bottom: thin solid black;
+}
+
+body
+{
+  overflow-y: scroll;
+}
+
+.pushable > .pusher
+{
+  padding-bottom: 1.5rem;
+}
+
+.ui.segment.pushable
+{
+  margin: 0;
+  padding: 1rem 0;
+  overflow: visible;
+}
+
+
+
+    </style>
+  </head>
+
+  <body>
+    
+    
+
+    <div class="ui fixed top pointing inverted stackable menu labmenu">
+      <header class="header item">
+        <i id="toc" class="sitemap icon"></i>
+        <a href="../index.html">
+          Web APIs and Express 
+        </a>
+      </header>
+      <div class="right tab-menu menu">
+        
+          <a class="item" data-tab="node-lab3">
+            node-lab3
+          </a>
+        
+          <a class="item" data-tab="01">
+            01
+          </a>
+        
+          <a class="item" data-tab="02">
+            02
+          </a>
+        
+          <a class="item" data-tab="03">
+            03
+          </a>
+        
+          <a class="item" data-tab="04">
+            04
+          </a>
+        
+          <a class="item" data-tab="05">
+            05
+          </a>
+        
+          <a class="item" data-tab="06">
+            06
+          </a>
+        
+          <a class="item" data-tab="07">
+            07
+          </a>
+        
+        <div class="item">
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ui segment pushable">
+      <div class="ui inverted labeled icon left inline vertical sidebar menu">
+        <br><br>
+        
+          
+            <a class="item" href="../../topic01/book-1/index.html">
+              Lab-HTML
+            </a>
+          
+        
+          
+            <a class="item" href="../../topic02/book-1/index.html">
+              node_lab1
+            </a>
+          
+        
+          
+            <a class="item" href="../../topic03/book-1/index.html">
+              node_lab2
+            </a>
+          
+        
+          
+            <a class="active item" href="../../topic03/book-2/index.html">
+              node-lab3
+            </a>
+          
+        
+          
+            <a class="item" href="../../topic04/book-1/index.html">
+              api-testing-ES6
+            </a>
+          
+        
+      </div>
+      <div class="pusher" tabindex="-1">
+        <div class="ui basic segment" id="labchat">
+          <br>
+          
+            <div  class="ui tab segment lab" data-tab="node-lab3">
+              <h1>Mongoose</h1>
+<p>This lab introduces Mongoose, a simple way of interacting with your Mongo database.</p>
+
+            </div>
+          
+            <div  class="ui tab segment lab" data-tab="01">
+              <h1>Set up</h1>
+<p>In your git lab repository, create a new folder called <strong>node-lab3</strong>. Copy the contents of last weeks lab, <strong>node-lab2</strong> into this folder.</p>
+<p>If you don&#39;t have the last lab, you can get it from the <a href="https://github.com/fxwalsh/node-samples-2018.git">samples</a> repository on Github.</p>
+<p>Check it works as before by running:</p>
+<pre><code>npm start</code></pre>
+<h3>Get Mongo, Mongoose and Express Async Handler</h3>
+<p><img src="./img/download.png" alt="Mongoose">
++ Download and install Mongodb by selecting the relevant installer for your OS:</p>
+<p><a href="https://www.mongodb.com/download-center?jmp=nav#community">MongoDB</a></p>
+<p>Follow the instructions and accept all defaults.</p>
+<p>All going well, you should be able to start MongoDB with default settings  by opening a command window and enter:
+<code>javascript
+mongod</code></p>
+<ul>
+<li>Open a terminal in  folder and install Mongoose as follows:</li>
+</ul>
+<p><code>npm install -save mongoose</code></p>
+<ul>
+<li>We will be using Mongoose with the async await pattern. To help us deal with rejected promises in Express, download the express-async-handler from NPM:</li>
+</ul>
+<p><code>npm install -save express-async-handler</code></p>
+
+            </div>
+          
+            <div  class="ui tab segment lab" data-tab="02">
+              <h1>Create a Mongoose Schema for Contacts</h1>
+<p>With Mongoose we declare the object structure (or schema) for each collection in the database - this app has only one. In your node-lab3 folder, create the file <em>api/contact/contactModel.js</em> and add the following code:</p>
+<pre><code class="lang-javascript">import mongoose from &#39;mongoose&#39;;
+const Schema = mongoose.Schema;
+
+const ContactSchema = new Schema({
+  name: String,
+  address: String,
+  age: {
+    type: Number,
+    min: 0,
+    max: 120,
+  },
+  email: String,
+  updated: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
+export default mongoose.model(&#39;Contact&#39;, ContactSchema);</code></pre>
+<p>Schema is a constructor function provided by Mongoose for creating schema instances (ContactSchema). The last line of code above associates the schema instance with a database collection named contacts (MongoDB creates unknown collections automatically, if necessary). The model() method returns a model object, which has special methods for querying and manipulating the associated collection, e.g. find(), findById(), create() etc.</p>
+
+            </div>
+          
+            <div  class="ui tab segment lab" data-tab="03">
+              <h1>Add configuration parameters</h1>
+<p>You will need to configure Mongoose to connect to your Mongodb database. It is generally a bad idea to have configuration parameters such as user-names, passwords, and instance specific parameters &quot;hard coded&quot; into your javascript programs.</p>
+<p>Add the following mongoDb URI to the ebd of your <code>.env</code> file in the root folder of the express app.</p>
+<pre><code class="lang-bash">mongoDB=mongodb://&lt;dbuser&gt;:&lt;dbpassword&gt;@ds122334455.mlab.com:39311/contacts_db
+seedDb=true</code></pre>
+<h2>Load Contact Data to MongoDB</h2>
+<p>Also, we will include a <code>seedDb</code> property to indicate if we wish to seed the database with data. This would only be used in development/testing environments. We will use this later when we cover testing.</p>
+<ul>
+<li>Create a new script called <code>contactsData.js</code> in the root folder <code>node-lab3</code> and enter the following script:</li>
+</ul>
+<pre><code class="lang-javascript">import contactModel from &#39;./api/contacts/contactModel&#39;;
+
+const contacts = [
+  {
+    &#39;name&#39;: &#39;Contact 1&#39;,
+    &#39;address&#39;: &#39;123 Test St&#39;,
+    &#39;phone_number&#39;: &#39;132-3212&#39;,
+  },
+  {
+    &#39;name&#39;: &#39;Contact 2&#39;,
+    &#39;address&#39;: &#39;23 Main St&#39;,
+    &#39;phone_number&#39;: &#39;934-4329&#39;,
+  },
+  {
+    &#39;name&#39;: &#39;Contact 3&#39;,
+    &#39;address&#39;: &#39;4 Lower St&#39;,
+    &#39;phone_number&#39;: &#39;432-5832&#39;,
+  },
+  {
+    &#39;name&#39;: &#39;Contact 4&#39;,
+    &#39;address&#39;: &#39;49 Upper Street&#39;,
+    &#39;phone_number&#39;: &#39;934-4290&#39;,
+  },
+];
+
+export const loadContacts = () =&gt; {
+  contactModel.find({}).remove(() =&gt; {
+    contactModel.collection.insert(contacts, (err, docs)=&gt;{
+    if (err) {
+      console.log(`failed to Load Contact Data: ${err}`);
+    } else {
+      console.info(`${contacts.length} contacts were successfully stored.`);
+    }
+  });
+});
+};</code></pre>
+<p>this will initialise the database with the contacts data we used in the previous labs.
++ Update <code>index.js</code> in the node-lab3 folder to reference to import mongoose and contactsData and load the database if the seedDb property is set to true:</p>
+<pre><code class="lang-javascript">import mongoose from &#39;mongoose&#39;;
+import {loadContacts} from &#39;./contactsData&#39;;
+
+....
+// Connect to database
+mongoose.connect(process.env.mongoDB);
+// Populate DB with sample data
+if (process.env.seedDb) {
+  loadContacts();
+}
+....</code></pre>
+<p>Check, using the Mongo Shell or online admin console, that the data has been entered when the server restarts.</p>
+
+            </div>
+          
+            <div  class="ui tab segment lab" data-tab="04">
+              <h1>Update Contacts Routing Package</h1>
+<p>We need to change <code>api/contacts/index.js</code> to incorporate Mongoose to connect to MongoDB.
++ Replace  <code>/api/contacts/index.js</code>  with the following code</p>
+<pre><code class="lang-javascript">
+import express from &#39;express&#39;;
+import Contact from &#39;./contactModel&#39;;
+import asyncHandler from &#39;express-async-handler&#39;;
+
+const router = express.Router(); // eslint-disable-line
+
+
+// Get all contacts, using try/catch to handle errors
+router.get(&#39;/&#39;, async (req, res) =&gt; {
+  try {
+    const contacts = await Contact.find();
+    res.status(200).json(contacts);
+  } catch (error) {
+    handleError(res, error.message);
+  }
+});
+
+// Create a contact, using async handler
+router.post(&#39;/&#39;, asyncHandler(async (req, res) =&gt; {
+  const contact = await Contact.create(req.body);
+  res.status(201).json(contact);
+}));
+
+// Update a contact
+router.put(&#39;/:id&#39;, asyncHandler(async (req, res) =&gt; {
+  if (req.body._id) delete req.body._id;
+  const contact = await Contact.update({
+    _id: req.params.id,
+  }, req.body, {
+    upsert: false,
+  });
+  if (!contact) return res.sendStatus(404);
+  return res.json(200, contact);
+}));
+
+// Delete a contact
+router.delete(&#39;/:id&#39;, asyncHandler(async (req, res) =&gt; {
+  const contact = await Contact.findById(req.params.id);
+  if (!contact) return res.send(404);
+  await contact.remove();
+  return res.status(204).send(contact);
+}));
+
+
+/**
+ * Handle general errors.
+ * @param {object} res The response object
+ * @param {object} err The error object.
+ * @return {object} The response object
+ */
+function handleError(res, err) {
+  return res.send(500, err);
+};
+
+export default router;</code></pre>
+<p>We use the Mongoose schema object to manipulate our contacts collection. Some characteristics to take note of:</p>
+<ul>
+<li>the code is more concise and simple compared to the <em>&quot;error first&quot;</em> or <em>&quot;errback&quot;</em> call back pattern .</li>
+<li>notice the use of a common, generic <em>&quot;asyncHandler&quot;</em> function. This is used to take care of any rejected promises/exceptions inside of async express routes and passing them to express error handlers.</li>
+</ul>
+
+            </div>
+          
+            <div  class="ui tab segment lab" data-tab="05">
+              <h1>Test the app</h1>
+<p>Use Postman to experiment with the API. Check that the following functions work:</p>
+<ul>
+<li>GET     /contacts              -&gt;  index</li>
+<li>POST    /contacts            -&gt;  create</li>
+<li>PUT     /contacts/:id          -&gt;  update</li>
+<li>DELETE  /contacts/:id          -&gt;  delete</li>
+</ul>
+<p>Try to add a contact with an invalid age. Notice how the app responds using the built in validation provided by Mongoose.
+<img src="./img/age_validation.png" alt="Age Validation Error"></p>
+<h3>Custom validator</h3>
+<ul>
+<li>In <em>/api/contacts/contactSchema.js</em>, add the following custom validator to ensure that the address property&#39;s length is greater than 5 characters and less than 50 characters.</li>
+</ul>
+<pre><code class="lang-javascript">ContactSchema.path(&#39;address&#39;).validate((v)=&gt;{
+    if(v.length&gt;50||v.length&lt;5){
+        return false;
+    }
+    return true;
+
+});</code></pre>
+<h2>Challenge</h2>
+<p>Using the material covered in lectures, update your app to do the following:</p>
+<ul>
+<li>Make the <em>name</em> and <em>address</em> fields required.</li>
+<li>Validate the format of the email address (hint: write a custom validator that uses regular expressions. Check out this post <a href="http://stackoverflow.com/questions/18022365/mongoose-validate-email-syntax">stack overflow</a>).</li>
+</ul>
+
+            </div>
+          
+            <div  class="ui tab segment lab" data-tab="06">
+              <h1>Hacker News API</h1>
+<ul>
+<li>Create a new file, <code>postsModel.js</code>, in the <em>/api/posts/</em> folder and add the following content:</li>
+</ul>
+<pre><code class="lang-javascript">import mongoose from &#39;mongoose&#39;;
+const Schema = mongoose.Schema;
+
+const CommentSchema = new Schema({
+  body: {type: String, required: true},
+  author: {type: String, required: true},
+  upvotes: {type: Number, default: 0},
+  });
+
+ const PostSchema = new Schema({
+   title: {type: String, required: true},
+   link: {type: String, optional: true},
+   username: {type: String, required: true},
+   comments: [CommentSchema],
+   upvotes: {type: Number, min: 0, max: 100, default: 0},
+ });
+export default mongoose.model(&#39;posts&#39;, PostSchema);</code></pre>
+<p>This file exports the model for hacker news posts. Notice the use of two schemas, CommentSchema and PostSchema, with the former used as the type for the comments in the latter.
++ We want to be able to seed the database with test data during development. Create a new file called <em>postsData.js</em> in the root <em>node-lab3</em> folder.</p>
+<pre><code class="lang-javascript">import postModel from &#39;./api/posts/postsModel&#39;;
+
+const posts = [
+         {id: 1,
+           title: &#39;India - Tiger population sees 30% increase.&#39;,
+           link: &#39;http://www.bbc.com/news/world-asia-30896028&#39;,
+           username: &#39;jbloggs&#39;,
+            comments: [],
+            upvotes: 10,
+          },
+         {
+            id: 2,
+            title: &#39;The button that is not.&#39;,
+            link: &#39;http://blog.nuclearsecrecy.com/2014/12/15/button-isnt/&#39;,
+            username: &#39;notme&#39;,
+            comments: [],
+            upvotes: 12,
+          },
+          {
+            id: 3,
+            title: &#39;Google Nears $1B Investment in SpaceX&#39;,
+            link: null,
+            username: &#39;notme&#39;,
+            comments: [],
+            upvotes: 12,
+          },
+          {
+            id: 4,
+            title: &#39;Coinbase Raises $75M from DFJ Growth, USAA, and More&#39;,
+            link: &#39;http://blog.coinbase.com/post/108642362357/coinbase-raises-75m-from-dfj-growth-usaa-nyse&#39;,
+            username: &#39;psmith&#39;,
+            comments: [],
+            upvotes: 2,
+          },
+      ];
+export const loadPosts = () =&gt; {
+postModel.find({}).remove(function() {
+    postModel.collection.insert(posts, (err, docs)=&gt;{
+    if (err) {
+      console.log(`failed to Load Post Data`);
+    } else {
+      console.info(`${posts.length} posts were successfully stored.`);
+    }
+  });
+});
+};</code></pre>
+<ul>
+<li>Open <code>index.js</code> and include the script.</li>
+</ul>
+<pre><code class="lang-javascript">...
+import {loadPosts} from &#39;./postsData&#39;;
+
+...
+
+// Populate DB with sample data
+if (process.env.seedDb) {
+  loadContacts();
+  loadPosts();
+}
+...</code></pre>
+<p>The Server should now load the news data to MongoDB.</p>
+
+            </div>
+          
+            <div  class="ui tab segment lab" data-tab="07">
+              <h1>Update HackerNews API</h1>
+<p>The routing script for the news API needs to by updated to include the Mongoose <code>postsModel</code>.</p>
+<ul>
+<li>Replace the code in <code>/api/posts/indexjs</code> with the following:</li>
+</ul>
+<pre><code class="lang-javascript">import express from &#39;express&#39;;
+import Post from &#39;./postsModel&#39;;
+import asyncHandler from &#39;express-async-handler&#39;;
+
+const router = express.Router();// eslint-disable-line
+
+router.get(&#39;/&#39;, asyncHandler(async (req, res) =&gt; {
+  const posts = await Post.find();
+  return res.send(posts);
+}));
+
+// Add a post
+router.post(&#39;/&#39;, asyncHandler(async (req, res) =&gt; {
+    const newPost = req.body;
+    if (newPost) {
+          const post = await Post.create(newPost);
+          return res.status(201).send({post});
+      } else {
+         return handleError(res, err);
+      }
+}));
+
+// upvote a post
+router.post(&#39;/:id/upvotes&#39;, asyncHandler(async (req, res) =&gt; {
+  const id = req.params.id;
+  const post = await Post.findById(id);
+  post.upvotes++;
+  await post.save();
+  return res.status(201).send({post});
+}));
+
+// get post
+router.get(&#39;/:id&#39;, asyncHandler(async (req, res) =&gt; {
+    const id = req.params.id;
+    const post = await Post.findById(id);
+    return res.send({post});
+}));
+
+
+
+/**
+ * Handle general errors.
+ * @param {object} res The response object
+ * @param {object} err The error object.
+ * @return {object} The response object
+ */
+function handleError(res, err) {
+  return res.status(500).send(err);
+};
+
+export default router;</code></pre>
+<h2>Challenge</h2>
+<ul>
+<li>add the correct route for adding a comment.</li>
+<li>add the correct route for upvoting a comment.</li>
+<li>add the correct route for deleting a comment.</li>
+<li>update the code to return just the first 5 posts, ordered by date added.</li>
+</ul>
+
+            </div>
+          
+        </div>
+      </div>
+    </div>
+
+    <script>
+      $(document).on('keydown', function(e) {
+  e = e || window.event;
+  var nextTab;
+  switch (e.which || e.keyCode) {
+    case 37: // left
+      nextTab = $('.tab-menu a[data-tab].active').prev('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').last();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+
+    case 39: // right
+      nextTab = $('.tab-menu a[data-tab].active').next('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').first();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+  }
+});
+
+      $(document).ready(function() {
+  $('img').addClass('ui image');
+
+  $('.ui.embed').embed();
+
+  const $images = $('.lab img');
+  jQuery.each($images, function(i) {
+    if ($images[i].alt.length > 0) {
+      const divImg = $(document.createElement('div')).addClass(
+        'ui basic segment',
+      );
+      $($images[i]).wrap(divImg);
+      const divLabel = $(document.createElement('div')).addClass(
+        'ui blue ribbon label',
+      );
+      divLabel.append($images[i].alt);
+      $(divLabel).insertBefore($images[i]);
+    }
+  });
+
+  $('.ui.menu .item').tab({
+    history: true,
+    historyType: 'hash',
+  });
+
+  $('.popup').popup();
+
+  $('.ui.sidebar')
+    .sidebar({ context: $('.pushable') })
+    .sidebar('setting', 'transition', 'slide out')
+    .sidebar('attach events', '#toc');
+});
+
+    </script>
+  </body>
+</html>

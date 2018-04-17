@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-light.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      
+
+body
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.ui.segment.pushable
+{
+  margin: 0;
+  padding: 1rem 0;
+  overflow: visible;
+}
+
+code
+{
+  font-family: "Monaco";
+  font-size: 110%;
+}
+
+img
+{
+  padding:1px;
+  border:1px solid black;
+}
+
+h1
+{
+  font-style:italic;
+  font-size:130%;
+  border-bottom:thin solid black;
+}
+
+h2
+{
+  font-size:110%;
+  border-bottom: thin solid black;
+}
+
+h3
+{
+  font-size:100%;
+  border-bottom: thin solid black;
+}
+
+body
+{
+  overflow-y: scroll;
+}
+
+.pushable > .pusher
+{
+  padding-bottom: 1.5rem;
+}
+
+.ui.segment.pushable
+{
+  margin: 0;
+  padding: 1rem 0;
+  overflow: visible;
+}
+
+
+
+    </style>
+  </head>
+
+  <body>
+    
+    
+
+    <div class="ui fixed top pointing inverted stackable menu labmenu">
+      <header class="header item">
+        <i id="toc" class="sitemap icon"></i>
+        <a href="../index.html">
+          Web APIs and Express 
+        </a>
+      </header>
+      <div class="right tab-menu menu">
+        
+          <a class="item" data-tab="node_lab2">
+            node_lab2
+          </a>
+        
+          <a class="item" data-tab="01">
+            01
+          </a>
+        
+          <a class="item" data-tab="02">
+            02
+          </a>
+        
+        <div class="item">
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ui segment pushable">
+      <div class="ui inverted labeled icon left inline vertical sidebar menu">
+        <br><br>
+        
+          
+            <a class="item" href="../../topic01/book-1/index.html">
+              Lab-HTML
+            </a>
+          
+        
+          
+            <a class="item" href="../../topic02/book-1/index.html">
+              node_lab1
+            </a>
+          
+        
+          
+            <a class="active item" href="../../topic03/book-1/index.html">
+              node_lab2
+            </a>
+          
+        
+          
+            <a class="item" href="../../topic03/book-2/index.html">
+              node-lab3
+            </a>
+          
+        
+          
+            <a class="item" href="../../topic04/book-1/index.html">
+              api-testing-ES6
+            </a>
+          
+        
+      </div>
+      <div class="pusher" tabindex="-1">
+        <div class="ui basic segment" id="labchat">
+          <br>
+          
+            <div  class="ui tab segment lab" data-tab="node_lab2">
+              <h2>Node and Express 2</h2>
+<p>This lab uses Express implement APIs for the contact and Hacker News examples.  In this lab you will use routing, parameterise URLs, and parsing Middleware.</p>
+
+            </div>
+          
+            <div  class="ui tab segment lab" data-tab="01">
+              <h1>Contacts API</h1>
+<p>We will enhance the Contacts API from last weeks lab. The following is a suggested API design for Contacts API.</p>
+<h1>API Design</h1>
+<p>We are going to create an API to manage contact data. The proposed API is as follows:</p>
+<p><img src="./img/contacts_api.png" alt="Contacts API"></p>
+<h3>Set up</h3>
+<ul>
+<li><p>In your labs repo, copy the <strong>node-lab1</strong> folder from last weeks lab and name it <strong>node-lab2</strong>. If you do not have a solution for last weeks lab, you can get it from the solution repo at <a href="https://github.com/fxwalsh/node-samples-2018.git">https://github.com/fxwalsh/node-samples-2018.git</a>.</p>
+</li>
+<li><p>Install the following packages in your lab folder.</p>
+</li>
+</ul>
+<blockquote>
+<pre><code class="lang-script">npm install --save body-parser
+npm install --save lodash</code></pre>
+<p>Body-parser is a middleware that express can use to parse json.</p>
+</blockquote>
+<ul>
+<li>Update index.js to import and use <strong>body-parser</strong>.</li>
+</ul>
+<blockquote>
+<pre><code class="lang-javascript">import bodyParser from &#39;body-parser&#39;;
+....
+//configure body-parser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
+....</code></pre>
+</blockquote>
+<ul>
+<li>Before we go any further, test the &#39;get all contacts&#39; service using your Rest client(e.g. Postman). This should be still working the same from last weeks lab.
+<img src="./img/contacts_api_1.png" alt="contacts API"></li>
+</ul>
+<h2>Add a Contact</h2>
+<ul>
+<li>Now update the routing script, <strong>index.js</strong>, to the following code.</li>
+</ul>
+<pre><code class="lang-javascript">import express from &#39;express&#39;;
+import contacts from &#39;./contacts&#39;;
+
+const router = express.Router();
+
+router.get(&#39;/&#39;, (req, res) =&gt; {
+  res.send({ contacts: contacts });
+});
+
+router.post(&#39;/&#39;, (req, res) =&gt; {
+        let newContact = req.body;
+        if (newContact){
+          contacts.push({name: newContact.name, address : newContact.address, phone_number: newContact.phone_number }) ;
+          res.status(201).send({message: &quot;Contact Created&quot;});
+      }else{
+            res.status(400).send({message: &quot;Unable to find Contact in request. No Contact Found in body&quot;});
+      }
+});
+
+export default router;</code></pre>
+<p>Test with your Rest Client. You will need to supply a JSON representation of the new client in the HTTP body.</p>
+<p><img src="./img/contacts_post.png" alt="Contacts post"></p>
+<h2>Update a Contact</h2>
+<ul>
+<li>Updating a contact involves replacing a contact with the new data in the HTTP request body. This corresponds to a HTTP PUT. We will use the phone number as the key to identify contacts. Add the following routing code to the end of <strong>/api/contacts/index.js</strong>.</li>
+</ul>
+<pre><code class="lang-javascript">// Update a contact
+router.put(&#39;/:id&#39;, (req, res) =&gt; {
+     const key = req.params.id;
+     const updateContact = req.body;
+     const index = contacts.map((contact)=&gt;{
+return contact.phone_number;
+}).indexOf(key);
+            if (index !== -1) {
+               contacts.splice(index, 1, {name: updateContact.name, address: updateContact.address,
+               phone_number: updateContact.phone_number});
+               res.status(200).send({message: &#39;Contact Updated&#39;});
+              } else {
+          res.status(400).send({message: &#39;Unable to find Contact in request. No Contact Found in body&#39;});
+      }
+});</code></pre>
+<p>Test using a Rest client by doing a <strong>HTTP PUT</strong> using
+the  URL of an existing contact as follows.</p>
+<blockquote>
+<p><a href="http://localhost:8080/api/contacts/934-4329">http://localhost:8080/api/contacts/934-4329</a></p>
+</blockquote>
+<p> You will need to include a JSON document in the HTTP body to replace it.  </p>
+<h2>Delete a Contact</h2>
+<ul>
+<li>Include the following function and test that the function removes a contact.(e.g. perform a HTTP DELETE on <a href="http://localhost:8080/api/contacts/1">http://localhost:8080/api/contacts/1</a>)</li>
+</ul>
+<pre><code class="lang-javascript">// Delete a contact
+router.delete(&#39;/:id&#39;, (req, res) =&gt; {
+     const key = req.params.id;
+     const index = contacts.map((contact)=&gt;{
+return contact.phone_number;
+}).indexOf(key);
+    if (index &gt; -1) {
+contacts.splice(index, 1);
+        res.status(200).send({message: `Deleted contact with phone_number: ${key}.`});
+    } else {
+      res.status(400).send({message: `Unable to find contact with phone_number: ${key}.`});
+      }
+});</code></pre>
+<h2>Commit it</h2>
+<p>Commit the changes you just made to your repo.</p>
+<pre><code>git add -A
+git commit -m &quot;added routing for add,update,delete contact&quot;</code></pre>
+
+            </div>
+          
+            <div  class="ui tab segment lab" data-tab="02">
+              <h1>Hacker News API</h1>
+<p>Now we will create an API for <a href="https://news.ycombinator.com/">Hacker News</a>. Hacker News is a social news website focusing on computer science and entrepreneurship. In general, content that can be submitted is defined as &quot;anything that gratifies one&#39;s intellectual curiosity&quot;.The following is a suggested API design for Hacker News Posts</p>
+<h3>API Design</h3>
+<p><img src="./img/hacker_api.png" alt="Hacker News API"></p>
+<h1>Set up</h1>
+<ul>
+<li>Create the following file structure for the posts and news scripts.</li>
+</ul>
+<pre><code class="lang-script">+api
+  +posts
+     |- stubAPI.js
+     |- index.js</code></pre>
+<ul>
+<li>In <em>/api/posts</em>, create two new javascript files, <em>stubAPI.js</em> and <em>index.js</em>.:</li>
+</ul>
+<pre><code class="lang-script">+api
+   +posts
+      |- stubAPI.js
+      |- index.js</code></pre>
+<h2>StubAPI.js</h2>
+<ul>
+<li>The <em>stubAPI.js</em> will take the place of the Mongo database for the time being. In <em>stubAPI.js</em>, enter the following code:</li>
+</ul>
+<pre><code class="lang-javascript">import _ from &#39;lodash&#39;;
+
+  const posts = [
+         {id: 1,
+            title: &#39;India - Tiger population sees 30% increase.&#39;,
+            link: &#39;http://www.bbc.com/news/world-asia-30896028&#39;,
+            username: &#39;jbloggs&#39;,
+            comments: [],
+            upvotes: 10,
+          },
+         {
+            id: 2,
+            title: &#39;The button that is not.&#39;,
+            link: &#39;http://blog.nuclearsecrecy.com/2014/12/15/button-isnt/&#39;,
+            username: &#39;notme&#39;,
+            comments: [],
+            upvotes: 12,
+          },
+          {
+            id: 3,
+            title: &#39;Google Nears $1B Investment in SpaceX&#39;,
+            link: null,
+            username: &#39;notme&#39;,
+            comments: [],
+            upvotes: 12,
+          },
+          {
+            id: 4,
+            title: &#39;Coinbase Raises $75M from DFJ Growth, USAA, and More&#39;,
+            link: &#39;http://blog.coinbase.com/post/108642362357/coinbase-raises-75m-from-dfj-growth-usaa-nyse&#39;,
+            username: &#39;psmith&#39;,
+            comments: [],
+            upvotes: 2,
+          },
+      ];
+
+
+     const stubAPI = {
+         getAll: () =&gt; {
+            return posts;
+          },
+         add: (t, l) =&gt; {
+              if (!(t &amp;&amp; l)) return false;
+              let id = 1;
+              const last = _.last(posts);
+              if (last) {
+                 id = last.id + 1;
+              }
+              let len = posts.length;
+              let newLen = posts.push({
+                  &#39;id&#39;: id,
+                 &#39;title&#39;: t, &#39;link&#39;: l, &#39;username&#39;: &#39;&#39;, &#39;comments&#39;: [], &#39;upvotes&#39;: 0});
+               return newLen &gt; len?id:-1;
+              },
+         upvote: (id) =&gt; {
+             const index = _.findIndex(posts,
+                   (post) =&gt; {
+                    return post.id == id;
+                  } );
+             if (index !== -1) {
+                  posts[index].upvotes += 1;
+                  return true;
+                }
+              return false;
+           },
+         getPost: (id) =&gt; {
+            let result = null;
+            const index = _.findIndex(posts,
+                   (post) =&gt; {
+                    return post.id == id;
+                  } );
+             if (index !== -1) {
+                result = posts[index];
+                    }
+            return result;
+            },
+         addComment: (postId, c, n) =&gt; {
+            let result = false;
+            const post = stubAPI.getPost(postId);
+            let id = 1;
+            if (post) {
+            const last = _.last(post.comments);
+            if (last) {
+               id = last.id + 1;
+            }
+            post.comments.push({&#39;id&#39;: id,
+                     &#39;comment&#39;: c, &#39;author&#39;: n, &#39;upvotes&#39;: 0} );
+            result = true;
+            }
+          return result;
+            },
+         upvoteComment: (postId, commentId) =&gt; {
+            let result = false;
+            const post = stubAPI.getPost(postId);
+            if (post) {
+            const index = _.findIndex(post.comments, (c) =&gt; {
+                      return c.id == commentId;
+                    });
+             if (index !== -1) {
+                 post.comments[index].upvotes += 1;
+                 result = true;
+                }
+              }
+            return result;
+          },
+      };
+    export default stubAPI;</code></pre>
+<h1>Routing</h1>
+<ul>
+<li>We will use the same service to handle hacker news as well as contacts. We will need to add the  a new route in index.js for Hacker News. Add the following statements to the top of index.js to import and use the hacker news routes.</li>
+</ul>
+<pre><code class="lang-javascript">import postsRouter from &#39;./api/posts&#39;;
+
+......
+
+app.use(&#39;/api/posts&#39;, postsRouter);</code></pre>
+<h1>Get and Post</h1>
+<p>Getting and posting posts is very similar to the Contacts API. Add the following to <strong>api/posts/index.js</strong>:</p>
+<pre><code class="lang-javascript">import express from &#39;express&#39;;
+import stubAPI from &#39;./stubAPI&#39;;
+
+const router = express.Router();
+
+// get all posts
+router.get(&#39;/&#39;, (req, res) =&gt; {
+  const posts = stubAPI.getAll();
+  res.send({posts: posts});
+});
+
+
+// Add a post
+router.post(&#39;/&#39;, (req, res) =&gt; {
+    const newPost = req.body;
+
+    if (newPost &amp;&amp; stubAPI.add(newPost.title, newPost.link)) {
+         return res.status(201).send({message: &#39;Posts Created&#39;});
+    }
+    return res.status(400).send({message: &#39;Unable to find Post in request.&#39;});
+});
+
+// get a post
+router.get(&#39;/:id&#39;, (req, res) =&gt; {
+    const id = req.params.id;
+    const post = stubAPI.getPost(id);
+
+       if (post) {
+               return res.status(200).send(post);
+              }
+              return res.status(404).send({message: `Unable to find Post ${id}`});
+});
+
+export default router;</code></pre>
+<ul>
+<li>Save and test using your Rest client. Make sure any changes using POST are visible using GET on <a href="http://locahost:8080/api/posts">http://locahost:8080/api/posts</a></li>
+</ul>
+<h2>Upvotes and Comments.</h2>
+<ul>
+<li>Add the following route to allow for post upvotes:</li>
+</ul>
+<pre><code class="lang-javascript">// upvote a post
+router.post(&#39;/:id/upvote&#39;, (req, res) =&gt; {
+     const id = req.params.id;
+            if (stubAPI.upvote(id)) {
+                 return res.status(200).send({message: `Post ${id} Upvoted`});
+            }
+            return res.status(404).send({message: `Unable to find Post ${id}`});
+});</code></pre>
+<p>The function upvotes the corresponding post on a post request to a resource matching the pattern <code>/:id/upvote</code>
+Test using your Rest client, making sure upvotes are recorded correctly.</p>
+<h2>Commit it</h2>
+<ul>
+<li>Commit the changes you just made to your repo.</li>
+</ul>
+<pre><code class="lang-bash">git add -A
+git commit -m &quot;added routing for add,update,delete&quot;</code></pre>
+<h2>Challenge</h2>
+<p>Examine and understand the code for adding a post and upvoting a post. Now try to implement adding and upvoting comments.</p>
+<blockquote>
+<p><strong> hint: </strong> an example comment would be <code>{&quot;comment&quot;:&quot;this is a great post!&quot;, &quot;author&quot;:&quot;fxwalsh&quot;}</code>. Refer to the API Design table for the correct parametised routing. The functions you will need from the stubAPI are addComment(postId, comment.comment, comment.author) and upvoteComment(postId, commentId).</p>
+</blockquote>
+
+            </div>
+          
+        </div>
+      </div>
+    </div>
+
+    <script>
+      $(document).on('keydown', function(e) {
+  e = e || window.event;
+  var nextTab;
+  switch (e.which || e.keyCode) {
+    case 37: // left
+      nextTab = $('.tab-menu a[data-tab].active').prev('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').last();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+
+    case 39: // right
+      nextTab = $('.tab-menu a[data-tab].active').next('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').first();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+  }
+});
+
+      $(document).ready(function() {
+  $('img').addClass('ui image');
+
+  $('.ui.embed').embed();
+
+  const $images = $('.lab img');
+  jQuery.each($images, function(i) {
+    if ($images[i].alt.length > 0) {
+      const divImg = $(document.createElement('div')).addClass(
+        'ui basic segment',
+      );
+      $($images[i]).wrap(divImg);
+      const divLabel = $(document.createElement('div')).addClass(
+        'ui blue ribbon label',
+      );
+      divLabel.append($images[i].alt);
+      $(divLabel).insertBefore($images[i]);
+    }
+  });
+
+  $('.ui.menu .item').tab({
+    history: true,
+    historyType: 'hash',
+  });
+
+  $('.popup').popup();
+
+  $('.ui.sidebar')
+    .sidebar({ context: $('.pushable') })
+    .sidebar('setting', 'transition', 'slide out')
+    .sidebar('attach events', '#toc');
+});
+
+    </script>
+  </body>
+</html>
