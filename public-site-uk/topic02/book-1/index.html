@@ -5,86 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css" type="text/css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-light.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css"
+          type="text/css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-light.min.css"
+          rel="stylesheet"/>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     <style>
       
 
-body
-{
+body {
   font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+  font-size:90%;
+  color: black;
 }
 
-figcaption
-{
-  margin-bottom: 20px;
+p {
+  margin: 0.5em;
 }
 
-.vertical-align
-{
-  display: flex;
-  align-items: center;
-}
-
-.ui.segment.pushable
-{
-  margin: 0;
-  padding: 1rem 0;
-  overflow: visible;
-}
-
-code
-{
+pre code {
   font-family: "Monaco";
-  font-size: 110%;
+  font-size: 100%;
 }
 
-img
-{
-  padding:1px;
-  border:1px solid black;
+img {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin:10px;
 }
 
-h1
-{
+h1, h2, h3 {
+  border-bottom:thin solid black;
+  margin-bottom: 0.5em;
+  margin-top: 1em;
+}
+
+h1 {
   font-style:italic;
   font-size:130%;
-  border-bottom:thin solid black;
 }
 
-h2
-{
+h2 {
   font-size:110%;
-  border-bottom: thin solid black;
 }
 
-h3
-{
+h3 {
   font-size:100%;
-  border-bottom: thin solid black;
 }
 
-body
-{
-  overflow-y: scroll;
-}
 
-.pushable > .pusher
-{
-  padding-bottom: 1.5rem;
-}
 
-.ui.segment.pushable
-{
+      
+
+html, body {
+  height: 100%;
   margin: 0;
-  padding: 1rem 0;
-  overflow: visible;
+}
+.wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.footer {
+  background: white;
+  text-align: right;
+}
+.content {
+  flex: 1;
+  overflow: auto;
 }
 
 
@@ -92,90 +91,93 @@ body
     </style>
   </head>
 
-  <body>
-    
-    
+  <body class="uk-background-muted">
+    <div class="wrapper">
+      <div class="content">
+        <div style="height:1000px;">
+          
+  
 
-    <div class="ui fixed top pointing inverted stackable menu labmenu">
-      <header class="header item">
-        <i id="toc" class="sitemap icon"></i>
-        <a href="../index.html">
-          Introduction to Promises, Remote Repos and Node.js 
+  <div class="ui fixed top pointing inverted stackable menu labmenu">
+    <header class="header item">
+      <i id="toc" class="sitemap icon"></i>
+      
+        <a href="../index.html"> Introduction to Promises, Remote Repos and Node.js  </a>
+      
+    </header>
+    <div class="right tab-menu menu">
+      
+        <a class="item" data-tab="node_lab1">
+          node_lab1
         </a>
-      </header>
-      <div class="right tab-menu menu">
-        
-          <a class="item" data-tab="node_lab1">
-            node_lab1
-          </a>
-        
-          <a class="item" data-tab="01">
-            01
-          </a>
-        
-          <a class="item" data-tab="02">
-            02
-          </a>
-        
-          <a class="item" data-tab="03">
-            03
-          </a>
-        
-          <a class="item" data-tab="04">
-            04
-          </a>
-        
-          <a class="item" data-tab="05">
-            05
-          </a>
-        
-        <div class="item">
-          
-        </div>
-      </div>
+      
+        <a class="item" data-tab="01">
+          01
+        </a>
+      
+        <a class="item" data-tab="02">
+          02
+        </a>
+      
+        <a class="item" data-tab="03">
+          03
+        </a>
+      
+        <a class="item" data-tab="04">
+          04
+        </a>
+      
+        <a class="item" data-tab="05">
+          05
+        </a>
+      
     </div>
+  </div>
 
-    <div class="ui segment pushable">
-      <div class="ui inverted labeled icon left inline vertical sidebar menu">
-        <br><br>
+
+  
+
+  <div class="ui pushable">
+    <div class="ui inverted labeled icon left inline vertical sidebar menu">
+      <br><br>
+      
         
-          
-            <a class="item" href="../../topic01/book-1/index.html">
-              Lab-HTML
-            </a>
-          
+          <a class="item"
+             href="https://wit-computing.github.io/enterprise-web-2018//topic01/book-1/index.html">Lab-HTML </a>
         
-          
-            <a class="active item" href="../../topic02/book-1/index.html">
-              node_lab1
-            </a>
-          
+      
         
-          
-            <a class="item" href="../../topic03/book-1/index.html">
-              node_lab2
-            </a>
-          
+          <a class="item"
+             href="https://wit-computing.github.io/enterprise-web-2018//topic02/book-1/index.html">node_lab1 </a>
         
-          
-            <a class="item" href="../../topic03/book-2/index.html">
-              node-lab3
-            </a>
-          
+      
         
-          
-            <a class="item" href="../../topic04/book-1/index.html">
-              api-testing-ES6
-            </a>
-          
+          <a class="item"
+             href="https://wit-computing.github.io/enterprise-web-2018//topic03/book-1/index.html">node_lab2 </a>
         
-      </div>
-      <div class="pusher" tabindex="-1">
-        <div class="ui basic segment" id="labchat">
-          <br>
-          
-            <div  class="ui tab segment lab" data-tab="node_lab1">
-              <h2>Node and Express 1</h2>
+      
+        
+          <a class="item"
+             href="https://wit-computing.github.io/enterprise-web-2018//topic03/book-2/index.html">node-lab3 </a>
+        
+      
+        
+          <a class="item"
+             href="https://wit-computing.github.io/enterprise-web-2018//topic04/book-1/index.html">api-testing-ES6 </a>
+        
+      
+        
+          <a class="item"
+             href="https://wit-computing.github.io/enterprise-web-2018//topic05/book-01/index.html">Authentication-JWT </a>
+        
+      
+    </div>
+    <div class="pusher" tabindex="-1">
+      <div class="ui basic segment">
+        <br>
+        
+          <div class="ui tab segment lab" data-tab="node_lab1">
+            <h2>Node and Express 1</h2>
 <p>This lab introduces <strong>node.js</strong> as a server-side technology. Now we will use node.js to run javascript programs on the &quot;server-side&quot; which are capable of servicing HTTP requests.  In this lab you will learn how to:</p>
 <ul>
 <li>Create and use a remote repo on Github</li>
@@ -186,10 +188,10 @@ body
 <li>How to do a simple route for a HTTP request.</li>
 </ul>
 
-            </div>
-          
-            <div  class="ui tab segment lab" data-tab="01">
-              <h1>Get Git</h1>
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="01">
+            <h1>Get Git</h1>
 <p><img src="./img/git1.png" alt="git"></p>
 <h3>Windows OS</h3>
 <p>If you&#39;re on Windows, download the  <strong>GitHub Desktop</strong>, from <a href="https://desktop.github.com/">here</a> which includes Git, and use the Git Shell for your terminal.</p>
@@ -237,10 +239,10 @@ $ cd node-labs-2018</code></pre>
 <pre><code class="lang-bash">$ git diff</code></pre>
 <p>Now with what you just learned above, commit this latest change.</p>
 
-            </div>
-          
-            <div  class="ui tab segment lab" data-tab="02">
-              <h1>Github</h1>
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="02">
+            <h1>Github</h1>
 <p>The repository you&#39;ve created so far is just on your computer, which is handy, but makes it pretty hard to share and work with others on.</p>
 <h3>Create a GitHub Account</h3>
 <p>GitHub is a website that allows people everywhere to upload what they&#39;re working on with Git and to easily work together.</p>
@@ -288,10 +290,10 @@ Now we will <em>push</em> your local work (i.e. the readme.md) to the remote rep
 <p><img src="./img/git_repo_init.png" alt="Empty Local Repo"></p>
 <p>Congrats on your first public repository! You will use this repository to contain the rest of your lab work.</p>
 
-            </div>
-          
-            <div  class="ui tab segment lab" data-tab="03">
-              <h1>Set Up and Configuration</h1>
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="03">
+            <h1>Set Up and Configuration</h1>
 <p>We will now set up and configure a development environment for Node.js.</p>
 <h4>package.json</h4>
 <p>If you&#39;re developing a Node program or library for deployment, it&#39;s a good practice to include a <strong>package.json</strong> file. This file is a manifest of the Node project and is located at your project root. It contains various information specific to your project.</p>
@@ -420,10 +422,10 @@ git commit -m &quot;set up and initial configuration&quot;</code></pre>
 </ul>
 <p>You should <strong>NOT</strong> see any output indicating changes ignored file and folders, for example the <em>node_modules</em> folder or <em>.env</em>.We do not need to track changes here as it&#39;s contents are specified in the <em>package.json</em>.</p>
 
-            </div>
-          
-            <div  class="ui tab segment lab" data-tab="04">
-              <h1>The &quot;Hello World&quot; HTTP Server</h1>
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="04">
+            <h1>The &quot;Hello World&quot; HTTP Server</h1>
 <p>We will be using node as a web application platform. In this step we&#39;ll set up a simple HTTP server that responds to every request with the plain text message &quot;Hello World&quot;.</p>
 <ul>
 <li>In the <em>node-lab1</em> create a new file called  <em>index.js</em>  with the following contents:</li>
@@ -520,10 +522,10 @@ git commit -m &quot;node-lab1,  simple server&quot;</code></pre>
 </li>
 </ul>
 
-            </div>
-          
-            <div  class="ui tab segment lab" data-tab="05">
-              <h1>Express Applications</h1>
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="05">
+            <h1>Express Applications</h1>
 <p>We&#39;ll now add some static content to our web server. Up to now you&#39;ve used <strong>http-server</strong> which is fine for prototyping HTML. We&#39;ll now move to Express, the package we installed in the last section. Express is a richer web app package and provides a nice high level approach to serving up static content. It&#39;s based around the idea of creating an Express &quot;app&quot; that you can easily configure. One of the configuration options allows you to specify the location of your publicly available content such as static HTML, CSS, client-side Javascript files etc.</p>
 <ul>
 <li>In your <em>node-lab-1</em> folder, create the following folder structure:<pre><code>+public
@@ -665,14 +667,16 @@ app.listen(port, () =&gt; {
 <p>hint: create a new folder in api for Hacker News. Create a routing script and update index.js to add the Hacker News route.</p>
 </blockquote>
 
-            </div>
-          
-        </div>
+          </div>
+        
       </div>
     </div>
+  </div>
 
-    <script>
-      $(document).on('keydown', function(e) {
+
+
+  <script>
+    $(document).on('keydown', function(e) {
   e = e || window.event;
   var nextTab;
   switch (e.which || e.keyCode) {
@@ -692,7 +696,7 @@ app.listen(port, () =&gt; {
   }
 });
 
-      $(document).ready(function() {
+    $(document).ready(function() {
   $('img').addClass('ui image');
 
   $('.ui.embed').embed();
@@ -725,6 +729,16 @@ app.listen(port, () =&gt; {
     .sidebar('attach events', '#toc');
 });
 
-    </script>
+  </script>
+
+
+        </div>
+      </div>
+      <div class="footer"> <p> Powered by <a
+          href="https://github.com/edeleastar/tutors-ts">tutors-ts.</a>
+         </p>
+      </div>
+    </div>
   </body>
+
 </html>

@@ -1,22 +1,411 @@
- <!DOCTYPE html>
- <html>
-   <head>
-     <meta charset="utf-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1">
-     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.39/css/uikit.min.css" />
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-light.min.css" />
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.39/js/uikit.min.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.39/js/uikit-icons.min.js"></script>
-     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
-     <script>hljs.initHighlightingOnLoad();</script>
-   </head>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.23/css/uikit.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.23/js/uikit.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.23/js/uikit-icons.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <style>
+      
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+.wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.footer {
+  background: white;
+  text-align: right;
+}
+.content {
+  flex: 1;
+  overflow: auto;
+}
+
+
+
+    </style>
+  </head>
   <body class="uk-background-muted">
-    
+    <div class="wrapper">
+      <div class="content">
+        <div style="height:1000px;">
+          
   
-  <div class="uk-background-muted uk-flex uk-flex-center uk-flex-middle uk-text-center uk-padding-small" uk-grid>
+  <div class="uk-offcanvas-content">
+    <div id="offcanvas-usage" uk-offcanvas>
+      <div class="uk-offcanvas-bar">
+        <button class="uk-offcanvas-close" type="button" uk-close></button>
+        
+          
+            <ul class="uk-nav">
+              <li class="uk-parent">
+                <a class="item" href="https://wit-computing.github.io/enterprise-web-2018//topic01/index.html">
+                  
+  <i class="fas fa-sitemap " style="color:#009688"> </i>
+Introduction to HTML, CSS and Bootstrap 
+                </a>
+                <ul class="uk-nav-sub">
+                  
+                    
+                      <li>
+                        
+                          
+                            
+                              <a class="item"
+                                 href="https://wit-computing.github.io/enterprise-web-2018//topic01/talk-1/ES2015.pdf">
+  <i class="fas fa-object-group " style="color:#009688"> </i>
+ ECMA2015 
+                                
+                              </a>
+                            
+                          
+                        
+                      </li>
+                    
+                  
+                    
+                      <li>
+                        
+                          
+                            
+                              <a class="item"
+                                 href="https://wit-computing.github.io/enterprise-web-2018//topic01/talk-2/html5.pdf">
+  <i class="fas fa-object-group " style="color:#009688"> </i>
+CSS and Bootstrap 
+                                
+                              </a>
+                            
+                          
+                        
+                      </li>
+                    
+                  
+                    
+                      <li>
+                        
+                          
+                            
+                              <a class="item"
+                                 href="https://wit-computing.github.io/enterprise-web-2018//topic01/book-1/index.html">
+  <i class="fas fa-flask " style="color:#00BCD4"> </i>
+Lab-HTML
+                                
+                              </a>
+                            
+                          
+                        
+                      </li>
+                    
+                  
+                </ul>
+              </li>
+            </ul>
+          
+        
+          
+            <ul class="uk-nav">
+              <li class="uk-parent">
+                <a class="item" href="https://wit-computing.github.io/enterprise-web-2018//topic02/index.html">
+                  
+  <i class="fas fa-sitemap " style="color:#009688"> </i>
+Introduction to Promises, Remote Repos and Node.js 
+                </a>
+                <ul class="uk-nav-sub">
+                  
+                    
+                      <li>
+                        
+                          
+                            
+                              <a class="item"
+                                 href="https://wit-computing.github.io/enterprise-web-2018//topic02/talk-1/git.pdf">
+  <i class="fas fa-object-group " style="color:#009688"> </i>
+Git Overview 
+                                
+                              </a>
+                            
+                          
+                        
+                      </li>
+                    
+                  
+                    
+                      <li>
+                        
+                          
+                            
+                              <a class="item"
+                                 href="https://wit-computing.github.io/enterprise-web-2018//topic02/talk-2/promises.pdf">
+  <i class="fas fa-object-group " style="color:#009688"> </i>
+ Promises 
+                                
+                              </a>
+                            
+                          
+                        
+                      </li>
+                    
+                  
+                    
+                      <li>
+                        
+                          
+                            
+                              <a class="item"
+                                 href="https://wit-computing.github.io/enterprise-web-2018//topic02/talk-3/node.pdf">
+  <i class="fas fa-object-group " style="color:#009688"> </i>
+Node 
+                                
+                              </a>
+                            
+                          
+                        
+                      </li>
+                    
+                  
+                    
+                      <li>
+                        
+                          
+                            
+                              <a class="item"
+                                 href="https://wit-computing.github.io/enterprise-web-2018//topic02/book-1/index.html">
+  <i class="fas fa-flask " style="color:#00BCD4"> </i>
+node_lab1
+                                
+                              </a>
+                            
+                          
+                        
+                      </li>
+                    
+                  
+                </ul>
+              </li>
+            </ul>
+          
+        
+          
+            <ul class="uk-nav">
+              <li class="uk-parent">
+                <a class="item" href="https://wit-computing.github.io/enterprise-web-2018//topic03/index.html">
+                  
+  <i class="fas fa-sitemap " style="color:#009688"> </i>
+Web APIs and Express 
+                </a>
+                <ul class="uk-nav-sub">
+                  
+                    
+                      <li>
+                        
+                          
+                            
+                              <a class="item"
+                                 href="https://wit-computing.github.io/enterprise-web-2018//topic03/talk-1/APIs.pdf">
+  <i class="fas fa-object-group " style="color:#009688"> </i>
+ Web APIs using Express 
+                                
+                              </a>
+                            
+                          
+                        
+                      </li>
+                    
+                  
+                    
+                      <li>
+                        
+                          
+                            
+                              <a class="item"
+                                 href="https://wit-computing.github.io/enterprise-web-2018//topic03/talk-2/mongoDB.pdf">
+  <i class="fas fa-object-group " style="color:#009688"> </i>
+ MongoDB and Mongoose 
+                                
+                              </a>
+                            
+                          
+                        
+                      </li>
+                    
+                  
+                    
+                      <li>
+                        
+                          
+                            
+                              <a class="item"
+                                 href="https://wit-computing.github.io/enterprise-web-2018//topic03/book-1/index.html">
+  <i class="fas fa-flask " style="color:#00BCD4"> </i>
+node_lab2
+                                
+                              </a>
+                            
+                          
+                        
+                      </li>
+                    
+                  
+                    
+                      <li>
+                        
+                          
+                            
+                              <a class="item"
+                                 href="https://wit-computing.github.io/enterprise-web-2018//topic03/book-2/index.html">
+  <i class="fas fa-flask " style="color:#00BCD4"> </i>
+node-lab3
+                                
+                              </a>
+                            
+                          
+                        
+                      </li>
+                    
+                  
+                </ul>
+              </li>
+            </ul>
+          
+        
+          
+            <ul class="uk-nav">
+              <li class="uk-parent">
+                <a class="item" href="https://wit-computing.github.io/enterprise-web-2018//topic04/index.html">
+                  
+  <i class="fas fa-sitemap " style="color:#009688"> </i>
+ Unit Testing APIs 
+                </a>
+                <ul class="uk-nav-sub">
+                  
+                    
+                      <li>
+                        
+                          
+                            
+                              <a class="item"
+                                 href="https://wit-computing.github.io/enterprise-web-2018//topic04/talk-1/Testing-Web-APIs.pdf">
+  <i class="fas fa-object-group " style="color:#009688"> </i>
+ Testing Web APIs 
+                                
+                              </a>
+                            
+                          
+                        
+                      </li>
+                    
+                  
+                    
+                      <li>
+                        
+                          
+                            
+                              <a class="item"
+                                 href="https://wit-computing.github.io/enterprise-web-2018//topic04/book-1/index.html">
+  <i class="fas fa-flask " style="color:#00BCD4"> </i>
+api-testing-ES6
+                                
+                              </a>
+                            
+                          
+                        
+                      </li>
+                    
+                  
+                </ul>
+              </li>
+            </ul>
+          
+        
+          
+            <ul class="uk-nav">
+              <li class="uk-parent">
+                <a class="item" href="https://wit-computing.github.io/enterprise-web-2018//topic05/index.html">
+                  
+  <i class="fas fa-sitemap " style="color:#009688"> </i>
+ Authentication using JWT and Passport 
+                </a>
+                <ul class="uk-nav-sub">
+                  
+                    
+                      <li>
+                        
+                          
+                            
+                              <a class="item"
+                                 href="https://wit-computing.github.io/enterprise-web-2018//topic05/talk-01/authentication.pdf">
+  <i class="fas fa-object-group " style="color:#009688"> </i>
+ Authentication using Express, JWT, and Passport 
+                                
+                              </a>
+                            
+                          
+                        
+                      </li>
+                    
+                  
+                    
+                      <li>
+                        
+                          
+                            
+                              <a class="item"
+                                 href="https://wit-computing.github.io/enterprise-web-2018//topic05/talk-02/server-side-rendering.pdf">
+  <i class="fas fa-object-group " style="color:#009688"> </i>
+ Server Side Rendering 
+                                
+                              </a>
+                            
+                          
+                        
+                      </li>
+                    
+                  
+                    
+                      <li>
+                        
+                          
+                            
+                              <a class="item"
+                                 href="https://wit-computing.github.io/enterprise-web-2018//topic05/book-01/index.html">
+  <i class="fas fa-flask " style="color:#00BCD4"> </i>
+Authentication-JWT
+                                
+                              </a>
+                            
+                          
+                        
+                      </li>
+                    
+                  
+                </ul>
+              </li>
+            </ul>
+          
+        
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="uk-flex uk-flex-center uk-flex-middle uk-text-center uk-padding-small" uk-grid>
+    
+  <div class="uk-padding">
+    <a href="#offcanvas-usage" uk-toggle title="Table of Contents" pos="bottom" uk-tooltip>
+      
+  <i class="fas fa-bars fa-3x" style="color:"> </i>
+
+    </a>
+  </div>
+
     
   <div class="uk-width-1-2@m  uk-card uk-card-default uk-padding-small">
     <h2>  Unit Testing APIs  </h2>
@@ -32,10 +421,9 @@
     
       
   <li>
-    <a href="../index.html"
-       title="To the top level Topics for this Module" pos="bottom" uk-tooltip>
-      <i class="fas fa-home fa-4x"></i>
-    </a>
+    <a href="../index.html" title="To the top level Topics for this Module" pos="bottom" uk-tooltip> 
+  <i class="fas fa-home fa-4x" style="color:"> </i>
+ </a>
   </li>
 
       
@@ -43,8 +431,12 @@
 
     
   
+    
+  
 
     
+      
+
   
     <div class="uk-card uk-card-default uk-padding-small">
       <ul class="uk-iconnav">
@@ -56,10 +448,9 @@
       
       
   <li>
-    <a href="../talkwall.html"
-       title="All slides's in module" pos="bottom" uk-tooltip>
-      <i class="fas fa-object-group   fa-2x" style="color:#009688""></i>
-    </a>
+    <a href="../talkwall.html" title="All slides's in module" pos="bottom" uk-tooltip> 
+  <i class="fas fa-object-group fa-2x" style="color:#009688"> </i>
+ </a>
   </li>
 
     
@@ -68,10 +459,9 @@
       
       
   <li>
-    <a href="../labwall.html"
-       title="All labs's in module" pos="bottom" uk-tooltip>
-      <i class="fas fa-flask          fa-2x" style="color:#00BCD4""></i>
-    </a>
+    <a href="../labwall.html" title="All labs's in module" pos="bottom" uk-tooltip> 
+  <i class="fas fa-flask fa-2x" style="color:#00BCD4"> </i>
+ </a>
   </li>
 
     
@@ -90,26 +480,29 @@
     </div>
   
 
+    
   </div>
 
   
   <div class="uk-container uk-padding-small">
     
-      
+  
+
     
-      
+  
+
     
+  <div class="uk-container uk-padding-small">
     <div class="uk-child-width-1-4@s uk-flex uk-flex-center" uk-grid uk-height-match="target: > div > .uk-card">
       
-        
-          <div>
+        <div>
+          
             
-              
   <div class="uk-card uk-card-default 
   
     uk-card-hover
   
- uk-card-small uk-text-center uk-animation-scale-up">
+ uk-card-small uk-text-center uk-text-baseline uk-animation-fade">
     
   
     
@@ -125,13 +518,13 @@
         <h3>  Testing Web APIs </h3>
       </div>
       <div class="uk-width-1-4@m">
-        <i class=" fas fa-object-group   fa-2x" style="color:#009688" > </i>
+        
+  <i class="fas fa-object-group fa-2x" style="color:#009688"> </i>
+
+        
       </div>
     </div>
   </div>
-
-    
-  
 
     
   <div class="uk-card-body">
@@ -147,6 +540,9 @@
 
     
   
+
+    
+  
     <div class="uk-card-footer">
       <p> <p>This talk covers API testing with Mocha, Should and SuperTest</p>
 </p>
@@ -158,19 +554,17 @@
 
   </div>
 
-            
-          </div>
-        
+          
+        </div>
       
-        
-          <div>
+        <div>
+          
             
-              
   <div class="uk-card uk-card-default 
   
     uk-card-hover
   
- uk-card-small uk-text-center uk-animation-scale-up">
+ uk-card-small uk-text-center uk-text-baseline uk-animation-fade">
     
   
     
@@ -187,13 +581,13 @@
         <h3> api-testing-ES6</h3>
       </div>
       <div class="uk-width-1-4@m">
-        <i class=" fas fa-flask          fa-2x" style="color:#00BCD4" > </i>
+        
+  <i class="fas fa-flask fa-2x" style="color:#00BCD4"> </i>
+
+        
       </div>
     </div>
   </div>
-
-    
-  
 
     
   <div class="uk-card-body">
@@ -209,6 +603,9 @@
 
     
   
+
+    
+  
     <div class="uk-card-footer">
       <p> <p>This lab shows you how to test a Node API using Mocha, Should, and SuperTest.</p>
 </p>
@@ -220,13 +617,22 @@
 
   </div>
 
-            
-          </div>
-        
+          
+        </div>
       
     </div>
   </div>
 
+    <hr class="uk-divider-icon">
+  </div>
 
+
+        </div>
+      </div>
+      <div class="footer uk-text-small uk-text-right uk-text-muted"> Powered by <a
+          href="https://github.com/edeleastar/tutors-ts">tutors-ts.</a>
+        
+      </div>
+    </div>
   </body>
- </html>
+</html>

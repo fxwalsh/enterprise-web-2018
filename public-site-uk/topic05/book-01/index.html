@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css"
+          type="text/css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-light.min.css"
+          rel="stylesheet"/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      
+
+body {
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+  font-size:90%;
+  color: black;
+}
+
+p {
+  margin: 0.5em;
+}
+
+pre code {
+  font-family: "Monaco";
+  font-size: 100%;
+}
+
+img {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin:10px;
+}
+
+h1, h2, h3 {
+  border-bottom:thin solid black;
+  margin-bottom: 0.5em;
+  margin-top: 1em;
+}
+
+h1 {
+  font-style:italic;
+  font-size:130%;
+}
+
+h2 {
+  font-size:110%;
+}
+
+h3 {
+  font-size:100%;
+}
+
+
+
+      
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+.wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.footer {
+  background: white;
+  text-align: right;
+}
+.content {
+  flex: 1;
+  overflow: auto;
+}
+
+
+
+    </style>
+  </head>
+
+  <body class="uk-background-muted">
+    <div class="wrapper">
+      <div class="content">
+        <div style="height:1000px;">
+          
+  
+
+  <div class="ui fixed top pointing inverted stackable menu labmenu">
+    <header class="header item">
+      <i id="toc" class="sitemap icon"></i>
+      
+        <a href="../index.html">  Authentication using JWT and Passport  </a>
+      
+    </header>
+    <div class="right tab-menu menu">
+      
+        <a class="item" data-tab="Authentication-JWT">
+          Authentication-JWT
+        </a>
+      
+        <a class="item" data-tab="01">
+          01
+        </a>
+      
+        <a class="item" data-tab="02">
+          02
+        </a>
+      
+        <a class="item" data-tab="03">
+          03
+        </a>
+      
+        <a class="item" data-tab="04">
+          04
+        </a>
+      
+        <a class="item" data-tab="05">
+          05
+        </a>
+      
+        <a class="item" data-tab="06">
+          06
+        </a>
+      
+        <a class="item" data-tab="07">
+          07
+        </a>
+      
+    </div>
+  </div>
+
+
+  
+
+  <div class="ui pushable">
+    <div class="ui inverted labeled icon left inline vertical sidebar menu">
+      <br><br>
+      
+        
+          <a class="item"
+             href="https://wit-computing.github.io/enterprise-web-2018//topic01/book-1/index.html">Lab-HTML </a>
+        
+      
+        
+          <a class="item"
+             href="https://wit-computing.github.io/enterprise-web-2018//topic02/book-1/index.html">node_lab1 </a>
+        
+      
+        
+          <a class="item"
+             href="https://wit-computing.github.io/enterprise-web-2018//topic03/book-1/index.html">node_lab2 </a>
+        
+      
+        
+          <a class="item"
+             href="https://wit-computing.github.io/enterprise-web-2018//topic03/book-2/index.html">node-lab3 </a>
+        
+      
+        
+          <a class="item"
+             href="https://wit-computing.github.io/enterprise-web-2018//topic04/book-1/index.html">api-testing-ES6 </a>
+        
+      
+        
+          <a class="item"
+             href="https://wit-computing.github.io/enterprise-web-2018//topic05/book-01/index.html">Authentication-JWT </a>
+        
+      
+    </div>
+    <div class="pusher" tabindex="-1">
+      <div class="ui basic segment">
+        <br>
+        
+          <div class="ui tab segment lab" data-tab="Authentication-JWT">
+            <h1>Authentication using JWT and Passport</h1>
+<p>This lab implements a JWT-based Authentication strategy on the Hacker News solution from the previous lab.</p>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="01">
+            <h1>Introduction</h1>
+<p>This lab will create authentication with JSON Web Tokens for the hacker news solution in previous labs. You will include the jwt token with every request, meaning that we don’t need sessions. This way you don’t need cookies, but clients of the service will need to save the JWT in localStorage or other places on the frontend.</p>
+<p>In this lab you will:</p>
+<ul>
+<li>creating a /api/users route to register and acquire a token</li>
+<li>add authorisation middleware the api/posts route, making it only is available to users with a valid JSON web token</li>
+<li>update the HackerNews React app to use the API.</li>
+<li>add basic login/signin functionality to HackerNews app.</li>
+</ul>
+<h1>Set up</h1>
+<p>Copy and paste the solution from the last lab(node-lab4) into a new folder called <em>node-lab5</em>. You can find a solution to the last lab <a href="https://github.com/fxwalsh/node-samples-2018.git">here</a> in labs/node-lab4-async.</p>
+<h2>Install dependencies</h2>
+<p>You&#39;ll need the following dependencies to implement the authentication functionality:</p>
+<pre><code class="lang-bash">npm install --save passport passport-jwt jsonwebtoken bcrypt-nodejs</code></pre>
+<h2>Create Mongoose User Model</h2>
+<p>You will need to create a new user model for authentication.<br>+ Create a new folder <strong>/api/users/</strong> in the root project folder. In this folder, create a new file called <strong>userModel.js</strong> and enter the following code:</p>
+<pre><code class="lang-javascript">import mongoose from &#39;mongoose&#39;;
+import bcrypt from  &#39;bcrypt-nodejs&#39;;
+
+const Schema = mongoose.Schema;
+const UserSchema = new Schema({
+  username: {
+        type: String,
+        unique: true,
+        required: true,
+    },
+  password: {
+        type: String,
+        required: true,
+    },
+});
+
+UserSchema.pre(&#39;save&#39;, function(next) {
+    const user = this;
+    if (this.isModified(&#39;password&#39;) || this.isNew) {
+        bcrypt.genSalt(10, (err, salt)=&gt; {
+            if (err) {
+                return next(err);
+            }
+            bcrypt.hash(user.password, salt, null, (err, hash)=&gt; {
+                if (err) {
+                    return next(err);
+                }
+                user.password = hash;
+                next();
+            });
+        });
+    } else {
+        return next();
+    }
+});
+
+UserSchema.methods.comparePassword = function(passw, cb) {
+    bcrypt.compare(passw, this.password, (err, isMatch) =&gt; {
+        if (err) {
+            return cb(err);
+        }
+        cb(null, isMatch);
+    });
+};
+
+module.exports = mongoose.model(&#39;User&#39;, UserSchema);</code></pre>
+<p>This script defines the schema for a user. Note that it includes a pre-save hook that encrypts the password property before it is saved or updated. Also, the comparePassword() instance method can be used to authenticate users.</p>
+<h1>Seed database with User Data</h1>
+<p>For development and testing purposes it would be a good idea to seed the database with some user data.</p>
+<ul>
+<li>Create a new file called <strong>userData.js</strong> in the root foldes of the project and enter the following javascipt code:</li>
+</ul>
+<pre><code class="lang-javascript">import userModel from &#39;./api/users/userModel&#39;;
+
+const users = [
+  {
+    &#39;username&#39;: &#39;user1&#39;,
+    &#39;password&#39;: &#39;test1&#39;,
+  },
+  {
+    &#39;username&#39;: &#39;user2&#39;,
+    &#39;password&#39;: &#39;test2&#39;,
+  },
+];
+
+export const loadUsers = () =&gt; {
+  userModel.find({}).remove(() =&gt; {
+    users.forEach((user)=&gt;{
+                userModel.create(user, (err, docs)=&gt;{
+                if (err) {
+                    console.log(`failed to Load User Data: ${err}`);
+                }
+                }
+              );
+});
+    console.info(`${users.length} users were successfully stored.`);
+});
+};</code></pre>
+<ul>
+<li>Update the main script for the app,  <strong>/index.js</strong>,  to import userdata.js and run the loadUsers() function. Add the following lines of code to <strong>/index.js</strong> in the root folder.</li>
+</ul>
+<pre><code class="lang-javascript">...
+import {loadUsers} from &#39;./usersData&#39;;
+...
+
+// Populate DB with sample data
+if (process.env.seedDb) {
+  loadContacts();
+  loadPosts();
+// ADD THE NEXT LINE :)
+  loadUsers();
+}</code></pre>
+<ul>
+<li>Open a terminal window in the root folder and start the app by entering <code>npm start</code>. Comfirm that the users are being loaded by checking that you see the following console output:</li>
+</ul>
+<pre><code class="lang-bash">[nodemon] starting `babel-node index.js`
+body-parser deprecated undefined extended: provide extended option index.js:82:30
+Server running at 8080
+2 users were successfully stored.
+4 contacts were successfully stored.
+4 posts were successfully stored.</code></pre>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="02">
+            <h1>User API</h1>
+<p>You will now create the routes for logging in (authentication) and  registering new users.</p>
+<h3>Get Users</h3>
+<ul>
+<li>In <strong>/api/users/</strong> create a new file called <strong>index.js</strong>. Add the following code to the file:</li>
+</ul>
+<pre><code class="lang-javascript">import express from &#39;express&#39;;
+import User from &#39;./userModel&#39;;
+import asyncHandler from &#39;express-async-handler&#39;;
+import jwt from &#39;jsonwebtoken&#39;;
+
+const router = express.Router(); // eslint-disable-line
+
+// Get all contacts, using try/catch to handle errors
+router.get(&#39;/&#39;, async (req, res) =&gt; {
+  try {
+    const contacts = await User.find();
+    res.status(200).json(contacts);
+  } catch (error) {
+    handleError(res, error.message);
+  }
+});
+
+export default router;</code></pre>
+<ul>
+<li>Now add the following two lines of code to the  <em>/index.js</em> in the root folder to include this router in the Express app.</li>
+</ul>
+<pre><code class="lang-Javascript">...
+import usersRouter from &#39;./api/users&#39;;
+...
+
+app.use(&#39;/api/users&#39;, usersRouter);
+
+...</code></pre>
+<ul>
+<li>Using Postman (or in a browser), make a HTTP GET request for <a href="http://localhost:8080/api/users">http://localhost:8080/api/users</a>. You should get the following:</li>
+</ul>
+<pre><code class="lang-json">[{&quot;_id&quot;:&quot;5ad4a415d868c95db7089568&quot;,
+  &quot;username&quot;:&quot;user1&quot;,
+  &quot;password&quot;:&quot;$2a$10$Yr2RaZZys7/ot/cfKQOmHOgiJdC53FOYfb7m6dzA5yXMh8wvUwuDq&quot;,&quot;__v&quot;:0},
+{&quot;_id&quot;:&quot;5ad4a415d868c95db7089569&quot;,
+    &quot;username&quot;:&quot;user2&quot;,
+    &quot;password&quot;:&quot;$2a$10$0WvCY4f5g9QBOPwzHqoIquSGMSAqX3uT5I82LQp.NwPkKGWKFJQcW&quot;,
+    &quot;__v&quot;:0}]</code></pre>
+<ul>
+<li>Note how the passwords are being hashed before being saved in the database.</li>
+</ul>
+<h3>Register/Authenicate Users</h3>
+<p>You will use the POST on /api/users to both authenticate and register users. The &#39;action&#39; parameter in the query string can be used to distinguish between login and signup/register. We will also need to specify a secret environment variable that will be used to create the Javascript web token.</p>
+<ul>
+<li>Add the following entry for the secret variable into the <em>.env</em> file</li>
+</ul>
+<pre><code class="lang-bash">secret=ilikecake</code></pre>
+<ul>
+<li>Add the following route to /api/users/index.js</li>
+</ul>
+<pre><code class="lang-javascript">// Register/login a user, using async handler
+router.post(&#39;/&#39;, asyncHandler(async (req, res) =&gt; {
+  if (!req.body.username || !req.body.password) {
+    res.json({
+      success: false,
+      msg: &#39;Please pass username and password.&#39;,
+    });
+  };
+  if (req.query.action === &#39;register&#39;) {
+    const newUser = new User({
+      username: req.body.username,
+      password: req.body.password,
+    });
+    // save the user
+    await newUser.save();
+    res.status(201).json({
+      success: true,
+      msg: &#39;Successful created new user.&#39;,
+    });
+  } else {
+    const user = await User.findOne({
+      username: req.body.username,
+    });
+    if (!user) return res.status(401).send({success: false, msg: &#39;Authentication failed. User not found.&#39;});
+    user.comparePassword(req.body.password, (err, isMatch) =&gt; {
+      if (isMatch &amp;&amp; !err) {
+        // if user is found and password is right create a token
+        const token = jwt.sign(user.username, process.env.secret);
+        // return the information including token as JSON
+        res.status(200).json({
+          success: true,
+          token: &#39;BEARER &#39; + token,
+        });
+      } else {
+        res.status(401).send({
+          success: false,
+          msg: &#39;Authentication failed. Wrong password.&#39;,
+        });
+      }
+    });
+  };
+}));</code></pre>
+<p>The above function checks for both username and password in the request. If the action parameter&#39;s value is &quot;register&quot;, it attempts to create a new user in the database (using the mongoose User model). Otherwise, it authenticates the user, creates the JWT token using the secret and signed with the users username.
+The token is then returned to the client for use in future requests.</p>
+<p>We are now ready to test the User API.</p>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="03">
+            <h1>Test the User API</h1>
+<p>We should now construct some tests to check the user API is working as designed.
++ create a new file <strong>/test/testUsersAPI.js</strong> and enter the following tests:</p>
+<pre><code class="lang-javascript">import supertest from &#39;supertest&#39;;
+import {app} from &#39;./../index.js&#39;;
+import should from &#39;should&#39;; // eslint-disable-line
+// UNIT test begin
+describe(&#39;Users API unit test&#39;, function() {
+  this.timeout(120000); // eslint-disable-line
+  // #1 return a collection of json documents
+  it(&#39;should return collection of JSON documents&#39;, function(done) {
+    // calling home page api
+    supertest(app)
+    .get(&#39;/api/users&#39;)
+    .expect(&#39;Content-type&#39;, /json/)
+    .expect(200) // This is the HTTP response
+    .end(function(err, res) {
+        // HTTP status should be 200
+        res.status.should.equal(200);
+        done();
+    });
+  });
+
+  // #2 add a user
+  it(&#39;should register a user&#39;, function(done) {
+    // post to /api/contacts
+    supertest(app)
+    .post(&#39;/api/users&#39;)
+    .query({action: &#39;register&#39;})
+    .send({username: &#39;Contact 99&#39;, password: &#39;test1&#39;})
+    .expect(&#39;Content-type&#39;, /json/)
+    .expect(201)
+    .end(function(err, res) {
+      res.status.should.equal(201);
+      res.body.success.should.equal(true);
+      done();
+    });
+  });
+
+  // #3 login a user
+  it(&#39;should authenticate a user&#39;, function(done) {
+    // post to /api/contacts
+    supertest(app)
+    .post(&#39;/api/users&#39;)
+    .send({username: &#39;user1&#39;, password: &#39;test1&#39;})
+    .expect(&#39;Content-type&#39;, /json/)
+    .expect(201)
+    .end(function(err, res) {
+      res.status.should.equal(200);
+      res.body.token.substring(0, 3).should.equal(&#39;JWT&#39;);
+      done();
+    });
+  });
+});</code></pre>
+<ul>
+<li>Run the tests by entering <del>~npm test</del>~ in the terminal window. All going well,you should see results as follows:</li>
+</ul>
+<p><img src="./img/tests.png" alt="User API test results"></p>
+<ul>
+<li><p>Notice that the time for registering and authentication is relatively high - this is probably due to the jwt and bcrypt algorithms.</p>
+</li>
+<li><p><strong>CHALLENGE</strong>: write a test to check a failed authentication attempt (e.g. incorrect password) </p>
+</li>
+</ul>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="04">
+            <h1>Add Passport Authentication</h1>
+<p>Passport strategies are a middleware functions that a requests runs through before getting to the actual route.​ You will now create a JWT strategy and add it to the /api/posts route.</p>
+<ul>
+<li>in the root folder create a new folder called <strong>auth</strong>.</li>
+<li>Create a new file called <strong>/auth/index.js</strong> with the following contents:</li>
+</ul>
+<pre><code class="lang-javascript">import passport from &#39;passport&#39;;
+import passportJWT from &#39;passport-jwt&#39;;
+import UserModel from &#39;./../api/users/userModel&#39;;
+import dotenv from &#39;dotenv&#39;;
+
+dotenv.config();
+
+const JWTStrategy = passportJWT.Strategy;
+const ExtractJWT = passportJWT.ExtractJwt;
+
+let jwtOptions = {};
+jwtOptions.jwtFromRequest = ExtractJWT.fromAuthHeaderAsBearerToken();
+jwtOptions.secretOrKey = process.env.secret;
+const strategy = new JWTStrategy(jwtOptions, async function(payload, next) {
+  // usually this would be a database call:
+  const user = await UserModel.find({username: payload});
+  if (user) {
+    next(null, user);
+  } else {
+    next(null, false);
+  }
+});
+
+passport.use(strategy);
+
+export default passport;</code></pre>
+<p>The above script extracts the user from the token in the request (the payload) and verifys it is a valid username. The user is then passed on to the next middleware, accessable through the request object.</p>
+<p>Update the HackerNews posts API to use the username by adding username field to the post schema and including it in the posts API:
++ Replace PostSchema in /api/posts/postsModel.js with the following:</p>
+<pre><code class="lang-Javascript">const PostSchema = new Schema({
+   title: {type: String, required: true},
+   link: {type: String, optional: true},
+   username: {type: String, required: true},
+   comments: [CommentSchema],
+   upvotes: {type: Number, min: 0, max: 100, default: 0},
+   updated: {
+    type: Date,
+    default: Date.now,
+  },
+ });</code></pre>
+<ul>
+<li>Replace the &quot;Add a post&quot; route with the following code to add the username payload extracted from the JWT token</li>
+</ul>
+<pre><code class="lang-Javascript">...
+// Add a post
+router.post(&#39;/&#39;, asyncHandler(async (req, res) =&gt; {
+    const newPost = req.body;
+    newPost.username = req.user || &#39;anonymous&#39;;
+    if (newPost) {
+          const post = await Post.create(newPost);
+          return res.status(201).send({post});
+      } else {
+         return handleError(res, err);
+      }
+}));
+...</code></pre>
+<p>You need to import the jwt configured passport object into the main app script,  <em>/index.js</em>.</p>
+<ul>
+<li>Open <strong>/index.js</strong> and make the following changes to add authentication to the /api/posts/ route:</li>
+</ul>
+<pre><code class="lang-javascript">// import passport configured with JWT strategy​
+import passport from &#39;./auth&#39;;​
+
+…​
+
+// initialise passport​
+app.use(passport.initialize());​
+
+…​
+
+// Add passport.authenticate(..)  to middleware stack for protected routes​
+app.use(&#39;/api/posts&#39;, passport.authenticate(&#39;jwt&#39;, {session: false}), postsRouter);</code></pre>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="05">
+            <h1>Test the Hacker News API</h1>
+<p>Requests for passport protected routes must have a valid JWT token in the HTTP authorization header. Create the following tests to check this is the case...</p>
+<ul>
+<li>Create a new test file <em>/test/testPostsAPI.js</em> with the following content:</li>
+</ul>
+<pre><code class="lang-javascript">import supertest from &#39;supertest&#39;;
+import {app} from &#39;./../index.js&#39;;
+import should from &#39;should&#39;; // eslint-disable-line
+// UNIT test begin
+describe(&#39;Hacker News Posts API unit test&#39;, function() {
+  this.timeout(120000); // eslint-disable-line
+
+
+  // #1 return a collection of json documents
+  it(&#39;should return collection of JSON documents&#39;, function(done) {
+    // calling home page api
+    supertest(app)
+    .get(&#39;/api/posts&#39;)
+    .set(&#39;Authorization&#39;, &#39;BEARER eyJhbGciOiJIUzI1NiJ9.dXNlcjE.FmYria8wq0aFDHnzYWhKQrhF5BkJbFNN1PqNyNQ7V4M&#39;)
+    .expect(&#39;Content-type&#39;, /json/)
+    .expect(200) // This is the HTTP response
+    .end(function(err, res) {
+        // HTTP status should be 200
+        res.status.should.equal(200);
+        done();
+    });
+  });
+
+  it(&#39;should deny access to posts&#39;, function(done) {
+    supertest(app)
+    .get(&#39;/api/posts&#39;)
+    .expect(&#39;Content-type&#39;, /json/)
+    .expect(401) // This is the HTTP response
+    .end(function(err, res) {
+        // HTTP status should be 401
+        res.status.should.equal(401);
+        done();
+    });
+  });
+});</code></pre>
+<ul>
+<li>Run the tests as before. You should see a successfull generated report.</li>
+<li><strong>Challenge</strong>: add further tests for:
+++ creating a post
+++ creating a comment</li>
+<li>Change the authentication to just for creating/updating posts. </li>
+</ul>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="06">
+            <h1>Hooking up the React App.</h1>
+<p>We will now connect your Hacker News React App to the API. This step requires completion of the React labs.</p>
+<h2>System Architecture</h2>
+<p>We will keep using the <strong>create-react-app</strong> framework you were using previously. <strong>create-react-app</strong> provides a mechanism for working with an API server in development. We can have the development server proxy requests intended for our API server as follows:</p>
+<p><img src="./img/architecture.png" alt="Development Architecture"></p>
+<p>The React app makes an API request to localhost:3000, the Webpack development server. The development server proxies that request to the API server. This will remove any Cross-Origin-Resource-Sharing (CORS) issues with the browser.
+For this to work we need to launch both the create-react-app dev server and the API server in order to run the app locally. We also need to get the react dev server to proxy requests to the Express API.</p>
+<ul>
+<li><p>Copy the complete hackerNews app from it&#39;s current location and put it in the root of your Express API (node-lab2). It should look like this:<br><img src="./img/files.png" alt="HackerNews folder"></p>
+</li>
+<li><p>Open a console window in the hackerNews folder and start the react app:</p>
+<pre><code>npm start</code></pre>
+</li>
+</ul>
+<p>Check that the app functions as before. If it&#39;s not working then check the error messages if any.</p>
+<h2>Set up</h2>
+<h4>Nodemon filter</h4>
+<p>We want the nodemon process to ignore any changes in the hackerNews folder as these will not affect the API. In the <strong>package.json file in the lab-Node2 root folder</strong>, update the scripts property to the following:</p>
+<pre><code class="lang-json">&quot;scripts&quot;: {
+      &quot;start&quot;:  &quot;nodemon --ignore hackerNews/* --exec babel-node server.js&quot;
+    }</code></pre>
+<h4>Proxy Server</h4>
+<p>To have the React development server proxy our API requests to our Express API server, we need to add the following to the <strong>package.json file in the hackerNews folder.</strong>   </p>
+<pre><code class="lang-json">&quot;proxy&quot;:&quot;http://localhost:8080&quot;,</code></pre>
+<p>This should forward any request for unknown resources though to our Express app listening on port 8080.</p>
+<h4>Axios</h4>
+<p>We will need to make http requests to the Express API from the React App. In the <strong>hackerNews</strong> folder, install <strong>axois</strong>.</p>
+<pre><code>npm install --save axios</code></pre>
+<p>Axios is a promise-based HTTP client for the browser and node.js. You will use it to make requests to the Express API.</p>
+<h3>Start both servers</h3>
+<p>You will need to now start both the react app server and the Express API at the same time. Open two separate command windowsin the hackerNews folder and the parent lab folder. Start the respective servers in both windows:</p>
+<pre><code>npm start</code></pre>
+<p>You should see both processes come to life. As before, they support &#39;hot code changes&#39; so you should not have to restart the processes as you moake changes.</p>
+<h2>Integrate the Express Hacker News API</h2>
+<p>Currently the Hacker News app uses a stubAPI to mimic a real API. We will nowcreplace this with functionality that integrates with our API.  We also need to manage JWT tokens in local storage in the browser.</p>
+<ul>
+<li>In the hackerNews/src folder create a file called <strong>auth.js</strong> with the following content:   </li>
+</ul>
+<pre><code class="lang-javascript">class Auth {
+
+  /**
+   * Authenticate a user. Save a token string in Local Storage
+   *
+   * @param {string} token
+   */
+  static authenticateUser(token) {
+    localStorage.setItem(&#39;token&#39;, token);
+  }
+
+  /**
+   * Check if a user is authenticated - check if a token is saved in Local Storage
+   *
+   * @returns {boolean}
+   */
+  static isUserAuthenticated() {
+    return localStorage.getItem(&#39;token&#39;) !== null;
+  }
+
+  /**
+   * Deauthenticate a user. Remove a token from Local Storage.
+   *
+   */
+  static deauthenticateUser() {
+    localStorage.removeItem(&#39;token&#39;);
+
+
+  /**
+   * Get a token value.
+   *
+   * @returns {string}
+   */
+
+  static getToken() {
+    return localStorage.getItem(&#39;token&#39;);
+  }
+
+}
+
+export default Auth;</code></pre>
+<ul>
+<li>Create a new script in the <em>hackerNews/src</em> folder called <strong>api.js</strong> and enter the following code:</li>
+</ul>
+<pre><code class="lang-javascript">import axios from &#39;axios&#39;;
+import auth from &#39;./auth&#39;;
+export const upvote = async (postId) =&gt; {
+   axios.post(`/api/posts/${postId}/upvote`)
+              .then(resp =&gt; resp.data);
+};
+
+export const getAll = async () =&gt; {
+   const resp = await axios.get(&#39;/api/posts&#39;,{headers: {&#39;Authorization&#39;: auth.getToken()}},)
+   return resp.data;
+};
+
+export const getPost = async (postId) =&gt; {
+  const resp = await axios.get(`/api/posts/${postId}`,{headers: {&#39;Authorization&#39;: auth.getToken()}})
+  return resp.data;
+};
+
+export const add = async (newTitle, newLink) =&gt; {
+  const resp = await axios.post(&#39;/api/posts&#39;,{title: newTitle, link: newLink }, {headers: {&#39;Authorization&#39;: auth.getToken()}});
+  return resp.data;
+};
+
+export const login = async (username, password) =&gt; {
+  const resp = await axios.post(&#39;/api/users&#39;, { username: username, password: password });
+  return resp.data;
+};
+
+export const signup = async (username, password) =&gt; {
+  const resp = await axios.post(&#39;/api/users?action=register&#39;, { username: username, password: password });
+  return resp.data;
+};</code></pre>
+<p>Notice how the routes match what we&#39;ve implemented in the Express API. The proxy property in the HackerNews <em>package.json</em> provides the host information required to complete the request(i.e. localhast:8080).</p>
+<ul>
+<li>In the <code>hackerNews/src</code>, edit <code>App.js</code> as follows: Add and import statement for the new <strong>api</strong> package.</li>
+</ul>
+<pre><code class="lang-javascript">import * as api from &#39;./api&#39;;</code></pre>
+<ul>
+<li>We are going to place the posts returned from the Express API in the HackerApp component state. We will only show the NewsList component if we sucessfully retrieve all posts from the API. We include an <em>isHidden</em> property to indicate this.
+In <em>App.js</em>, add the  function  <code>componentDidMount()</code> to the HackerApp component to initialise the posts from the Express API:</li>
+</ul>
+<pre><code class="lang-javascript">class HackerApp extends React.Component {
+ state = {posts: [{}]};
+ async componentDidMount () {
+   try{
+         const resp = await api.getAll();
+         this.setState({
+                  posts: resp,
+                  isHidden: false,
+                });
+
+      } catch (e){
+        this.setState({
+                 isHidden: true
+               });
+      }
+ };
+    ...
+    ...</code></pre>
+<ul>
+<li>Now replace the <code>render</code> function of the HackerApp component with the following code. This replaces the previous use of stubAPI with the new posts state retrieved from the api package.</li>
+</ul>
+<pre><code class="lang-javascript">render() {
+  const posts = _.sortBy(this.state.posts, post =&gt;
+        post.upvotes);
+  return (
+    &lt;div&gt;
+    {!this.state.isHidden &amp;&amp; &lt;NewsList posts={posts}
+          upvoteHandler={this.incrementUpvote} /&gt;}
+     &lt;Form addHandler={this.addPost} /&gt;
+   &lt;/div&gt;
+  );
+}</code></pre>
+<p>Now have a look at the app in the browser. You should see the list of news items as before. This time, however, they are retrieved from the Express API.
+Try to add a new post. You&#39;ll notice nothing happens. Next we will update the addPost() method.</p>
+<h3>Adding a post</h3>
+<ul>
+<li>Locate the <code>addPost</code> function in the HackerApp component. Replace it with the following:</li>
+</ul>
+<pre><code class="lang-javascript">...
+addPost = async (title, link) =&gt; {
+  try{
+    const resp = await api.add(title, link);
+    const newPost = {&quot;id&quot;:resp.id,&quot;title&quot;:title,&quot;link&quot;:link,&quot;upvotes&quot;:0, &quot;comments&quot;:[]};
+    this.setState({posts: this.state.posts.concat([newPost])});
+  } catch(e){
+    alert(`failed to add post: ${e}`);
+  }
+};
+...</code></pre>
+<p>This function calls the Express API using async/await. When the await returns, then it pushes the new post onto the posts state property. The HackerApp should react to this state and call the render function again.</p>
+<p>Check the app in the browser again. You should be able add posts to the list.</p>
+<h3>Upvoting a Post</h3>
+<p>The upvote will cause errors if you try to use it at the moment.
+Replace the <strong>incrementUpvote</strong> function in the ReactApp component with the following:</p>
+<pre><code class="lang-javascript">
+incrementUpvote = async (id) =&gt; {
+try{
+  await api.upvote(id)
+  var upvotedPost = _.find(this.state.posts, post=&gt;post.id === id);
+  upvotedPost.upvotes++;
+  this.setState({})} catch(e){
+    alert(`failed to upvote post ${id}: ${e}`);
+  }
+};</code></pre>
+<p>Nowstart the application. You will probably notice you get a proxy message failure message as the react app tries to start.</p>
+<pre><code class="lang-bash">roxy error: Could not proxy request /api/posts from localhost:3000 to http://localhost:8080.
+See https://nodejs.org/api/errors.html#errors_common_system_errors for more information (ECONNREFUSED).</code></pre>
+<p>This is because the react app (the client) has not retrieved a valid Javascript Web Token to use the HackerNews Express API.
+In the next part, we will include a Login page to allow user authentication.</p>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="07">
+            <h1>Create a Login/Signin page</h1>
+<p>Rather  than developing our own login page, lets get a third party component. #</p>
+<ul>
+<li>Include  the following React Login Component in the Hackernews Project:</li>
+</ul>
+<pre><code class="lang-bash">npm install --save react-signup-login-component</code></pre>
+<ul>
+<li>In hackerNews/src folder, create a new file called <strong>loginPage.js</strong> with the following contents:</li>
+</ul>
+<pre><code class="lang-Javascript">import React from &#39;react&#39;;
+import ReactSignupLoginComponent from &#39;react-signup-login-component&#39;;
+import * as api from &#39;./api&#39;;
+import Auth from &#39;./auth&#39;;
+import { browserHistory } from &#39;react-router&#39;;
+
+
+const LoginPage = (props) =&gt; {
+    const signupWasClickedCallback = async (data) =&gt; {
+      try{
+      if (data.password!==data.passwordConfirmation) Error(&#39;Passwords do not match!&#39;);
+        await api.signup(data.username, data.password);
+        browserHistory.push(&#39;/&#39;);
+      }catch (e){
+         alert(`Signup Failed ${e}` )
+      }
+    };
+const loginWasClickedCallback = async function(data) {
+    try{
+     const result = await api.login(data.username, data.password);
+     Auth.authenticateUser(result.token);
+     browserHistory.push(&#39;/&#39;);
+
+   }catch (e){
+       alert(`SAuthentication Failed: ${e}` )
+   }
+
+    };
+
+    return (
+        &lt;div&gt;
+            &lt;ReactSignupLoginComponent
+                title=&quot;Hacker News&quot;
+                handleSignup={signupWasClickedCallback}
+                handleLogin={loginWasClickedCallback}
+            /&gt;
+        &lt;/div&gt;
+    );
+};
+
+export default LoginPage;</code></pre>
+<p>Again we import the <em>api.js</em> script to interact with the users api. We also use the <em>auth.js</em> script to manage local storage of the JWT token.</p>
+<h2>Add the loginPage to HackerNews App</h2>
+<p>We will now update the HackerNews app such that, if the user has not authenticated, we will present a link (in the form of a button) to the loginpage.</p>
+<ul>
+<li>Open hackernews/src/index.js and add a new route for the login page.</li>
+</ul>
+<pre><code class="lang-Javascript">import LoginView from &#39;./loginPage&#39;;
+
+...
+
+ReactDOM.render(
+ (
+  &lt;Router history={browserHistory} &gt;
+    &lt;Route path=&quot;/&quot; component={App}&gt;
+       &lt;IndexRoute component={HackerApp}/&gt;
+       &lt;Route path=&quot;posts/:postId&quot; component={CommentView} /&gt;
+       &lt;Route path=&quot;login&quot; component={LoginView} /&gt;
+    &lt;/Route&gt;
+  &lt;/Router&gt;
+),
+  document.getElementById(&#39;root&#39;)
+);</code></pre>
+<ul>
+<li>Make sure that <em>react-bootstrap</em> is installed in your app:  </li>
+</ul>
+<pre><code class="lang-bash">npm install --save react-bootstrap</code></pre>
+<ul>
+<li>Open <em>hackerNews/src/App.js</em> and add a new &quot;Login/Signin&quot; button.</li>
+</ul>
+<pre><code class="lang-Javascript">import {Button} from &#39;react-bootstrap&#39;;</code></pre>
+<ul>
+<li>Locate the render function in the HackerApp component and replce with the following so that the button is only visible if authentication fails.:</li>
+</ul>
+<pre><code class="lang-Javascript">render() {
+  const posts = _.sortBy(this.state.posts, post =&gt;
+        post.upvotes);
+  return (
+    &lt;div &gt;
+    {this.state.isHidden &amp;&amp;  &lt;Button href=&quot;/login&quot;&gt;Login/Signup&lt;/Button&gt;}
+    {!this.state.isHidden &amp;&amp; &lt;NewsList posts={posts}
+          upvoteHandler={this.incrementUpvote} /&gt;}
+     &lt;Form addHandler={this.addPost} /&gt;
+   &lt;/div&gt;
+  );
+}
+}</code></pre>
+<p>Now test the HackerNews app. If not logged in you should see the following:</p>
+<p><img src="./img/hacker1.png" alt="Not Authenticated"></p>
+<p>Clicking on the &quot;login/signin&quot; button should display the Login page:</p>
+<p><img src="./img/hacker2.png" alt="Login Page"></p>
+<p>Authenicate using username: user1, password: test1. This should return you to the main page and the list of news posts.</p>
+<p> <img src="./img/hacker3.png" alt="Authenticated"></p>
+<p>Congratulations! You&#39;ve included JWT in your app.</p>
+<h2>Challenge</h2>
+<p>Review your progress so far. Use the same approach to accomplish the following:</p>
+<ul>
+<li>integrate the API with the comment page.</li>
+<li>Update the contactList app to use the API developed in this lab.</li>
+</ul>
+
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+
+  <script>
+    $(document).on('keydown', function(e) {
+  e = e || window.event;
+  var nextTab;
+  switch (e.which || e.keyCode) {
+    case 37: // left
+      nextTab = $('.tab-menu a[data-tab].active').prev('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').last();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+
+    case 39: // right
+      nextTab = $('.tab-menu a[data-tab].active').next('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').first();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+  }
+});
+
+    $(document).ready(function() {
+  $('img').addClass('ui image');
+
+  $('.ui.embed').embed();
+
+  const $images = $('.lab img');
+  jQuery.each($images, function(i) {
+    if ($images[i].alt.length > 0) {
+      const divImg = $(document.createElement('div')).addClass(
+        'ui basic segment',
+      );
+      $($images[i]).wrap(divImg);
+      const divLabel = $(document.createElement('div')).addClass(
+        'ui blue ribbon label',
+      );
+      divLabel.append($images[i].alt);
+      $(divLabel).insertBefore($images[i]);
+    }
+  });
+
+  $('.ui.menu .item').tab({
+    history: true,
+    historyType: 'hash',
+  });
+
+  $('.popup').popup();
+
+  $('.ui.sidebar')
+    .sidebar({ context: $('.pushable') })
+    .sidebar('setting', 'transition', 'slide out')
+    .sidebar('attach events', '#toc');
+});
+
+  </script>
+
+
+        </div>
+      </div>
+      <div class="footer"> <p> Powered by <a
+          href="https://github.com/edeleastar/tutors-ts">tutors-ts.</a>
+         </p>
+      </div>
+    </div>
+  </body>
+
+</html>
